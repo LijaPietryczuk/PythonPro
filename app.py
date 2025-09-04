@@ -84,7 +84,7 @@ def main():
                     points += 1
                 else:
                     pass
-        if user1.best_score < points:
+        if user1.best_score is None or points > user1.best_score:
             user1.best_score = points
             db.session.commit()
 
