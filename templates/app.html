@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+    <style>
+        body {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <form method="POST">
+        {% for q in quiz %}
+            <p><b>Question {{ loop.index }}:</b> {{ q.question }}</p>
+            {% if q.options %}
+                {% for opt in q.options %}
+                    <label>
+                        <input type="radio" name="answer_{{ q.id }}" value="{{ opt.text }}">
+                        {{ opt.text }}
+                    </label><br>
+                {% endfor %}
+            {% else %}
+                <input type="text" name="answer_{{ q.id }}">
+            {% endif %}
+            <br>
+        {% endfor %}
+        <button type="submit">Submit Answers</button>
+    </form>
+
+    <footer>
+        Made by Lija Pietryczuk
+    </footer>
+</body>
+</html>
